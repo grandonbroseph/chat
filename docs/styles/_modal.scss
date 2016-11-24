@@ -1,0 +1,61 @@
+.modal-layer {
+  position: fixed;
+  display: flex;
+  z-index: 1;
+  &, .overlay {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+  .overlay {
+    position: absolute;
+    background: rgba(black, 0.5);
+  }
+  .modal {
+    position: relative;
+    margin: auto;
+    color: white;
+    background: $pane-color;
+    z-index: 1;
+    padding: 8px 24px;
+    box-shadow: $shadow;
+    .user {
+      display: flex;
+      align-items: center;
+      .avatar, .text {
+        margin: 4px;
+      }
+      .avatar {
+        width: 32px;
+        height: 32px;
+      }
+      .text {
+        flex-direction: column;
+      }
+    }
+  }
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.25s;
+}
+
+.fade-enter-active {
+  .modal {
+    transition: transform 0.25s ease-out;
+  }
+}
+
+.fade-leave-active {
+  .modal {
+    transition: transform 0.1s ease-in;
+  }
+}
+
+.fade-enter, .fade-leave-active {
+  opacity: 0;
+  .modal {
+    transform: scale(0.9);
+  }
+}

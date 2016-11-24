@@ -1,0 +1,99 @@
+$theme-color:       seagreen;
+$theme-color-light: mediumseagreen;
+$theme-color-dark:  seagreen;
+
+$pane-color:       #46464c;
+$pane-color-light: lighten($pane-color, 5%);
+$pane-color-dark:  #2a2a2a;
+
+.user {
+  .avatar {
+    background: black;
+    border-radius: 50%;
+  }
+  .text {
+    display: flex;
+    span {
+      display: inline-block;
+      line-height: 1;
+    }
+    .nickname {
+      color: darkgray;
+    }
+    .hash {
+      color: gray;
+    }
+  }
+  &.me {
+    .text .nickname {
+      color: white;
+      font-weight: bold;
+    }
+  }
+}
+
+aside.users {
+  $padding-h: 32px;
+  display: flex;
+  flex-direction: column;
+  width: 240px;
+  position: relative;
+  color: darkgray;
+  text-align: left;
+  padding: 32px 0;
+  .title {
+    text-align: right;
+    padding: 8px $padding-h;
+  }
+  .list {
+    padding-left: 32px;
+    list-style: none;
+    flex: 1;
+    .item {
+      width: 100%;
+      background: $pane-color;
+      margin-bottom: 6px;
+      box-shadow: $shadow;
+      &:hover {
+        cursor: pointer;
+        background: $pane-color-light;
+      }
+      .user {
+        display: flex;
+        align-items: center;
+        padding: 4px;
+        .avatar, .text {
+          margin: 4px 6px;
+        }
+        .avatar {
+          width: 32px;
+          height: 32px;
+        }
+      }
+    }
+  }
+  .buttons {
+    display: flex;
+    padding: 16px $padding-h;
+  }
+  .hash {
+    color: dimgray;
+  }
+}
+
+.slide-enter-active {
+  transition: transform 0.75s ease-out;
+}
+
+.slide-leave-active {
+  position: absolute;
+  transition: transform 0.5s ease-in;
+}
+
+.slide-move {
+  transition: transform 0.5s 0.5s;
+}
+
+.slide-enter, .slide-leave-active {
+  transform: translateX(100%);
+}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>hi</title>
+    <link rel="stylesheet" href="index.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700|Material+Icons"/>
+    <script type="text/x-template" id="user-template">
+      <div class="user" :class="{me: user.me}">
+        <div class="avatar"></div>
+        <div class="text">
+          <span class="nickname">{{ user.name }}</span>
+          <span class="hash">#{{ user.hash }}</span>
+        </div>
+      </div>
+    </script>
+  </head>
+  <body>
+    <div id="wrap">
+      <transition name="fade">
+        <div class="modal-layer" v-if="modal">
+          <div class="overlay" v-if="modal" @click="modal = null"></div>
+          <div class="modal">
+            <div is="user" :user="modal"></div>
+          </div>
+        </div>
+      </transition>
+      <header></header>
+      <article class="main">
+        <article class="chat">
+          <section class="messages">
+            <transition-group name="appear" tag="ul" class="list">
+              <li class="message" v-for="message in messages" :key="message.time" :class="{'-my': message.user.me}">
+                <div class="bubble">
+                  <div is="user" :user="message.user"></div>
+                  <span class="text">{{ message.text }}</span>
+                </div>
+              </li>
+            </transition-group>
+          </section>
+          <section class="input">
+            <input id="input" placeholder="Say hi" @keyup.enter="submit"/>
+            <button id="send" @click="submit">
+              <i class="material-icons">send</i>
+            </button>
+          </section>
+        </article>
+        <aside class="users">
+          <span class="title small-caps">Users</span>
+          <transition-group name="slide" tag="ul" class="list">
+            <li class="item" v-for="user in users" :key="user.hash" @click="modal = user">
+              <div is="user" :user="user"></div>
+            </li>
+          </transition-group>
+        </aside>
+      </article>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.0/vue.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="index.js"></script>
+  </body>
+</html>

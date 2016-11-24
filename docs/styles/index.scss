@@ -1,0 +1,116 @@
+$shadow: 0 4px 8px rgba(black, 0.25);
+
+@import "base";
+@import "users";
+@import "modal";
+
+body, button, input {
+  font-family: Roboto, sans-serif;
+}
+
+#wrap {
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+header {
+  background: $pane-color-dark;
+  height: 48px;
+}
+
+article.main {
+  flex: 1;
+  display: flex;
+  align-content: stretch;
+}
+
+article {
+  flex: 1;
+}
+
+article.chat {
+  display: flex;
+  flex-direction: column;
+  &, section {
+
+  }
+  section {
+    padding: 12px 16px;
+    &.messages {
+      flex: 1;
+      overflow-y: scroll;
+      .list {
+        list-style: none;
+
+        .message {
+          display: flex;
+          // &.-my {
+          //   justify-content: flex-end;
+          // }
+          .bubble {
+            display: inline-block;
+            background: $pane-color;
+            color: white;
+            padding: 12px 16px;
+            margin: 4px;
+            > .user, > .text {
+              margin: 2px;
+            }
+            span {
+              display: inline-block;
+            }
+          }
+        }
+      }
+    }
+    &.input {
+      display: flex;
+      position: relative;
+      z-index: 1;
+      box-shadow: -4px -4px 8px rgba(black, 0.25);
+      > * {
+        margin: 4px 4px;
+      }
+      input {
+        display: block;
+        line-height: 1;
+        flex: 1;
+        box-shadow: $shadow;
+      }
+      button {
+        padding: 4px 16px;
+        background: seagreen;
+        &:hover {
+          background: mediumseagreen;
+        }
+        i {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+}
+
+input {
+  height: 40px;
+  padding: 4px 16px;
+  font-size: 1rem;
+  outline: 0;
+  border: none;
+  background: $pane-color;
+  color: white;
+}
+
+.appear-enter-active {
+  transition: 0.25s ease-out;
+}
+
+.appear-leave-active {
+  transition: 0.25s ease-in;
+}
+
+.appear-enter, .appear-leave-active {
+  transform: translateX(-8px);
+  opacity: 0;
+}

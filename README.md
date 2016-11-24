@@ -1,2 +1,2 @@
-# chat
-Chat client.
+# pvp
+PVP sandbox for duel-type games.
